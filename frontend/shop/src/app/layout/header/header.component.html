@@ -12,6 +12,7 @@
       <a *ngIf="!isHomePage" routerLink="/shop" [queryParams]="{ platform: 'PlayStation' }" routerLinkActive="active">PlayStation</a>
       <a *ngIf="!isHomePage" routerLink="/shop" [queryParams]="{ platform: 'Xbox' }" routerLinkActive="active">Xbox</a>
       <a *ngIf="!isHomePage" routerLink="/shop" [queryParams]="{ platform: 'Mobile' }" routerLinkActive="active">Mobile</a>
+      <a *ngIf="!isHomePage"  routerLink="/about" routerLinkActive="active">About</a>
       <a [hidden]="isHomePage"  *appIsAdmin routerLink="/test-error" routerLinkActive="active">Errors</a>
       <a [hidden]="isHomePage"  *appIsAdmin routerLink="/admin" routerLinkActive="active">Admin</a>
     </nav>
