@@ -40,6 +40,7 @@ builder.Services.AddIdentityApiEndpoints<AppUser>()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<StoreContext>();
 
+builder.Services.AddScoped<UserInitializer>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<ICouponService, CouponService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
@@ -73,9 +74,14 @@ try
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<StoreContext>();
     var userManager = services.GetRequiredService<UserManager<AppUser>>();
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+    var initializer = services.GetRequiredService<UserInitializer>(); 
+
 
     await context.Database.MigrateAsync();
-    await StoreContextSeed.SeedAsync(context, userManager);
+    await StoreContextSeed.SeedAsync(context, userManager, roleManager);
+    await initializer.InitializeAsync(); 
+
 }
 catch (Exception ex)
 {
