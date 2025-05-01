@@ -5,7 +5,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
   providedIn: 'root'
 })
 export class GeminiService {
-  private apiKey = 'AIzaSyCxZnvx4wZTvAIinjWk56YHyXxtykPhcCE'; // Zameni sa pravim API ključem
+  private apiKey = ''; // Zameni sa pravim API ključem
   private model: any;
 
   constructor() {
